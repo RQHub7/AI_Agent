@@ -3,9 +3,9 @@ import os
 
 def get_files_info(working_directory, directory="."): # accept a dir (working_dir), return a string(contents of directory)
     
-    abspath_working = os.path.abspath(working_directory)
-    target_dir = os.path.normpath(os.path.join(abspath_working, directory))
-    valid_target_dir = os.path.commonpath([abspath_working, target_dir]) == abspath_working
+    abs_path_working = os.path.abspath(working_directory)
+    target_dir = os.path.normpath(os.path.join(abs_path_working, directory))
+    valid_target_dir = os.path.commonpath([abs_path_working, target_dir]) == abs_path_working
     if not valid_target_dir:
         return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
     if not os.path.isdir(target_dir):
