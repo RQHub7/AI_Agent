@@ -1,5 +1,6 @@
 import os
 from config import MAX_CHARS
+from google.genai import types
 
 def get_file_content(working_directory, file_path): # errors if not a file or a file within working_dir, otherwise return string(file)
     abs_path_working = os.path.abspath(working_directory)
@@ -17,3 +18,17 @@ def get_file_content(working_directory, file_path): # errors if not a file or a 
         return file_content
     except Exception as e:
         return f"Error: {e}"
+    
+schema_get_file_content = types.FunctionDeclaration(
+name="get_file_content",
+description="Returns a string output of a file up to the current limit of 10,000 characters",
+parameters=types.Schema(
+    type=types.Type.OBJECT,
+    properties={
+        "file_path": types.Schema(
+            type=types.Type.STRING,
+            description="File path relative to the working directory",
+        ),
+    },
+),
+)

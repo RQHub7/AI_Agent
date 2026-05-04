@@ -3,18 +3,41 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 import argparse
+from prompts import system_prompt
+from call_function import available_functions, call_function
 
-def generate_content(client, messages, detailed=None):
+def generate_content(client, messages, verbose=None):
     response = client.models.generate_content(
         model="gemini-2.5-flash", 
-        contents=messages
+        contents=messages,
+        config=types.GenerateContentConfig(
+            tools=[available_functions], system_instruction=system_prompt
+            ),
         )
     if response.usage_metadata == None:
         raise RuntimeError("API request likely failed. No usage metadata found")
-    if detailed == True:
+    if verbose == True:
         print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
-    print(response.text)
+    if response.function_calls:
+        for call in response.function_calls:
+            function_call_result = call_function(call, verbose)
+            if not function_call_result.parts:
+                raise Exception(f"{call.name} part not found")
+            if function_call_result.parts[0] == None:
+                raise Exception(f"{call.name} .function_response is unexpectedly 'None'")
+            if function_call_result.parts[0].function_response.response == None:
+                raise Exception(f"{call.name} .function_response.response is unexpectedly 'None'")
+            function_results = []
+            function_results.append(function_call_result.parts[0])
+            if verbose:
+                print(f"-> {function_call_result.parts[0].function_response.response}")
+
+    else:
+        print(response.text)
+
+        
+
 
 
 def main():
