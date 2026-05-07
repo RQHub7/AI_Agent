@@ -66,9 +66,9 @@ def main():
 
     messages = [types.Content(role="user", parts=[types.Part(text=args.user_prompt)])] # essentially the chatbot conversation as of now.
     client = genai.Client(api_key=api_key) # gemini api LLM is the client
-    detailed = args.verbose # specifiable option on call ( uv run main.py "What is the meaning of life?" --verbose )
+    verbose = args.verbose # specifiable option on call ( uv run main.py "What is the meaning of life?" --verbose )
 
-    generate_content(client, messages, detailed)
+    generate_content(client, messages, verbose)
 
 if __name__ == "__main__":
     main()
