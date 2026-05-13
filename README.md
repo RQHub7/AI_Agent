@@ -1,6 +1,6 @@
 ## AI AGENT Project
 ### The Agent
-* Built an agent that can read, write and execute python files in a specified directory to solve a task within a tight agentic feedback loop, currently 20 iterations. This project was built with the intention of furthering my understanding of AI agents and their usefulness. **See the Security & Limitations section below**. This was a guided Boot.Dev project.
+* Built an agent that can read, write and execute python files in a specified directory to solve a task within a tight agentic feedback loop, currently 20 iterations. This project was built with the intention of furthering my understanding of AI agents and their usefulness. **See the Security & Limitations section below**. This was a guided Boot.Dev project. **Scroll down for the screen recordings of usage examples.**
 ***
 ### What Does this Agent Do?
 1. Accepts a coding task within the project's directory (debug or adds a small new feature if your okay with that)
@@ -65,14 +65,15 @@ For real world or public use, the code execution should run within an isolated e
     * uv handles creation of the virtual environment or venv
 ***
 ### Usage Examples
-* basic calc one
+* #### **Basic calc one**
     1. insert a bug within calculator.py
     1. Run the agent with command explaining the bug or incorrect functionality and the task to fix this bug
  
   
 https://github.com/user-attachments/assets/373def0d-8e9a-4a28-b0a2-a9d06a8012b8
 
-* Outside project example usage
+***
+* #### **Outside project example usage** - *(see all 3 videos for prompt, before & after)*
     1. copying the outside project directory to the AI_Agent directory & environment  
     1. updating the system prompt to fit the task at hand
     1. updating the working_directory variable to the newly added outside project subdir
@@ -101,5 +102,5 @@ https://github.com/user-attachments/assets/bd96fc30-1f3a-4eb7-b504-65cf05aa224f
 
 
 
-Note: See [Asteroids repo](https://github.com/RQHub7/Asteroids) for the Agentic made "feature: Asteroid-Asteroid Collision"
+Note: See [Asteroids repo](https://github.com/RQHub7/Asteroids) for the Agentic made *"feat: Asteroid-Asteroid Collisions"*
 
